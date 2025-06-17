@@ -1,12 +1,12 @@
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 import openai
-from config import OPENAI_API_KEY
+from config import OPENAI_API_KEY, APP_SECRET_KEY
 from prompt import cipher_prompt
 
 app = Flask(__name__)
 CORS(app)
-app.secret_key = "cipher-secret"  # dibutuhkan untuk menyimpan sesi nama
+app.secret_key = APP_SECRET_KEY
 
 openai.api_key = OPENAI_API_KEY
 
