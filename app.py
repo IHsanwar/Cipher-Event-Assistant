@@ -5,7 +5,7 @@ from config import OPENAI_API_KEY, APP_SECRET_KEY
 from prompt import cipher_prompt
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True)
 app.secret_key = APP_SECRET_KEY
 
 openai.api_key = OPENAI_API_KEY
