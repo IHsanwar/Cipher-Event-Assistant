@@ -4,13 +4,13 @@ import openai
 from config import OPENAI_API_KEY, APP_SECRET_KEY
 from prompt import cipher_prompt
 from helpers import tool_definitions, tool_functions
-
+import requests
 
 from chat_api_refactor import handle_chat
 
 #configure
 app = Flask(__name__)
-
+app.secret_key = APP_SECRET_KEY
 CORS(app, 
      origins=["http://localhost:3000", "http://127.0.0.1:3000"],  # Your Next.js app
      supports_credentials=True,  # This is crucial for sessions
@@ -18,14 +18,25 @@ CORS(app,
      methods=["GET", "POST", "OPTIONS"]
 )
 
-app.secret_key = APP_SECRET_KEY
+# app.py
 app.config.update(
-    SESSION_COOKIE_SAMESITE='None',
-    SESSION_COOKIE_SECURE=False  # karena kamu pakai HTTP lokal
+    SESSION_COOKIE_SAMESITE='Lax',   # default aman utk dev
+    SESSION_COOKIE_SECURE=False      # ok krn masih HTTP
 )
 
 
+
 openai.api_key = OPENAI_API_KEY
+
+@app.route("/api/session-debug", methods=["GET"])
+def session_debug():
+    return jsonify({
+        "username": session.get("username"),
+        "session_id": request.cookies.get("session"),
+        "chat_history": session.get("chat_history"),
+    })
+
+
 @app.route("/api/setname", methods=["POST"])
 def set_name():
     data = request.json
