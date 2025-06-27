@@ -25,7 +25,7 @@ def submit_survey(nama, instansi, tampilan_produk, tampilan_stand, penjelasan_pr
     print("📩 Mengirim survey:", survey_data)
 
     try:
-        res = requests.post("http://127.0.0.1:5000/api/kirim-survey", json=survey_data)
+        res = requests.post("https://cipher.ihsanwd10.my.id/api/kirim-survey", json=survey_data)
         res.raise_for_status()
         return "✅ Survei kamu telah dikirim! Terima kasih!"
     except Exception as e:
@@ -36,7 +36,6 @@ def submit_survey(nama, instansi, tampilan_produk, tampilan_stand, penjelasan_pr
 # Dictionary pemetaan nama tool ke fungsi
 tool_functions = {
     "Survey": submit_survey,
-    "WaktuSekarang": get_current_time
 }
 
 # JSON untuk dikirim ke OpenAI

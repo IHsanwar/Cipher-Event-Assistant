@@ -31,7 +31,7 @@ def build_openai_messages(user_input: str):
 
 def call_openai(messages):
     return openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4o",
         messages=messages,
         temperature=0.7,
         max_tokens=1000,

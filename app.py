@@ -100,5 +100,11 @@ def kirim_survey():
         print("❌ HTTP Error:", e)
         return jsonify({"error": str(e), "detail": e.response.text if e.response else "No response body"}), 500
 
+@app.route("/api/clear-session", methods=["POST"])
+def clear_session():
+    session.pop("chat_history", None)
+    session.pop("username", None)
+    session.modified = True
+    return jsonify({"message": "✅ Session cleared"})
 if __name__ == "__main__":
     app.run(debug=True)
