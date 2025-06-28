@@ -20,7 +20,7 @@ def prepare_user_data():
     return user_input.strip()
 
 def build_openai_messages(user_input: str):
-    username = session.get("username", "Barts") or "Barts"
+    username = session.get("username", "Pengunjung") or "Pengunjung"
     session.permanent = True
 
     history = session.get("chat_history", []) or []

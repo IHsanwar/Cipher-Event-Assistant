@@ -106,5 +106,7 @@ def clear_session():
     session.pop("username", None)
     session.modified = True
     return jsonify({"message": "✅ Session cleared"})
+
+    
 if __name__ == "__main__":
     app.run(debug=True)
