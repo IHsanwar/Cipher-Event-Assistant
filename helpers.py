@@ -25,7 +25,7 @@ def submit_survey(nama, instansi, tampilan_produk, tampilan_stand, penjelasan_pr
     print("📩 Mengirim survey:", survey_data)
 
     try:
-        res = requests.post("https://cipher.ihsanwd10.my.id/api/kirim-survey", json=survey_data)
+        res = requests.post("/api/kirim-survey", json=survey_data)
         res.raise_for_status()
         return "✅ Survei kamu telah dikirim! Terima kasih!"
     except Exception as e:
